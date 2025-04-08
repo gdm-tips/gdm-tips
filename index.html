@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>TIPS: Text-Image Pretraining with Spatial Awareness</title>
+<link href="./style.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/onnxruntime-web/dist/ort.min.js"></script>
+<script type="text/javascript" src="./tips_files/jquery.mlens-1.0.min.js"></script>
+<script type="text/javascript" src="./tips_files/jquery.js"></script>
+</head>
+
+<body>
+<div class="content">
+  <h1><strong>TIPS: Text-Image Pretraining with Spatial Awareness</strong></h1>
+  <p id="authors"><span>
+      <a href="https://www.kmaninis.com/">Kevis-Kokitsi Maninis*</a>
+      <a href="https://scholar.google.com/citations?user=xjEcoNQAAAAJ&hl=en&oi=ao">Kaifeng Chen*</a>
+      <a href="https://scholar.google.com/citations?user=QkZ8ZHEAAAAJ&hl=en&oi=ao">Soham Ghosh*†</a>
+      <a href="https://scholar.google.com/citations?user=jgSItF4AAAAJ&hl=en&oi=ao">Arjun Karpur*</a>
+      <a href="https://scholar.google.com/citations?user=swG8fpkAAAAJ&hl=en&oi=ao">Koert Chen</a>
+       <a href="https://scholar.google.com/citations?user=QQhJ1pAAAAAJ&hl=en&oi=ao">Ye Xia</a>
+      <a href="https://scholar.google.com/citations?user=7EeSOcgAAAAJ&hl=en&oi=ao">Bingyi Cao</a>
+        <a href="https://scholar.google.com/citations?user=7EeSOcgAAAAJ&hl=en&oi=ao">Daniel Salz</a>
+      <a href="https://scholar.google.com/citations?user=1dh5WWUAAAAJ&hl=en&oi=ao">Guangxing Han</a>
+      <a href="https://scholar.google.com/citations?user=2fo_v44AAAAJ&hl=en&oi=ao">Jan Dlabal</a>
+        <a href="https://scholar.google.com/citations?user=zNMOfjQAAAAJ&hl=en&oi=ao">Dan Gnanapragasam</a>
+      <a href="https://scholar.google.com/citations?user=U8bXgtkAAAAJ&hl=en&oi=ao">Mojtaba Seyedhosseini</a>
+      <a href="https://scholar.google.com/citations?user=Rh9T3EcAAAAJ&hl=en/">Howard Zhou</a>
+      <a href="https://andrefaraujo.github.io//">Andre Araujo</a>
+       <br>
+      <span style="font-size: smaller;">(*equal contribution) († now with Mistral AI)</span>
+    <br><br>
+  <span style="font-size: 24px">Google DeepMind
+  </span></p>
+  <br>
+  <center><img src="./tips_comp.png" class="teaser" style="width:100%;"></center><br>
+  <img src="./tips_teaser.png" class="teaser" style="width:100%;"><center> <h4>TIPS is a general-purpose image-text encoder model, which can be effectively used for dense and global understanding, in vision-only or vision-language tasks.</h4></center><br>
+    <font size="+2">
+          <p style="text-align: center;">
+            <a href="https://arxiv.org/abs/2410.16512" target="_blank">[Paper]</a>     
+            <a href="https://github.com/google-deepmind/tips/tree/main" target="_blank">[Github]</a>     
+            <a href="https://github.com/google-deepmind/tips/tree/main/pytorch/checkpoints" target="_blank">[Checkpoints]</a>     
+            <a href="https://github.com/google-deepmind/tips/blob/main/LICENSE" target="_blank">[License]</a>     
+          </p>
+    </font>
+</div>
+
+<div class="content">
+  <h2 style="text-align:center;">Abstract</h2>
+  <p>
+    While image-text representation learning has become very popular in recent years, existing models tend to lack spatial awareness and have limited direct applicability for dense understanding tasks. For this reason, self-supervised image-only pre-training is still the go-to method for many dense vision applications (e.g. depth estimation, semantic segmentation), despite the lack of explicit supervisory signals. In this paper, we close this gap between image-text and self-supervised learning, by proposing a novel general-purpose image-text model, which can be effectively used off the shelf for dense and global vision tasks. Our method, which we refer to as Text-Image Pretraining with Spatial awareness (TIPS), leverages two simple and effective insights. First, on textual supervision: we reveal that replacing noisy web image captions by synthetically generated textual descriptions boosts dense understanding performance significantly, due to a much richer signal for learning spatially aware representations. We propose an adapted training method that combines noisy and synthetic captions, resulting in improvements across both dense and global understanding tasks. Second, on the learning technique: we propose to combine contrastive image-text learning with self-supervised masked image modeling, to encourage spatial coherence, unlocking substantial enhancements for downstream applications. Building on these two ideas, we scale our model using the transformer architecture, trained on a curated set of public images. Our experiments are conducted on 8 tasks involving 16 datasets in total, demonstrating strong off-the-shelf performance on both dense and global understanding, for several image-only and image-text tasks.
+  </p>
+</div>
+
+<!--  Results Section -->
+<div class="content">
+    <h2 style="text-align:center;">Results</h2>  <!-- Centered title -->
+        <p>
+        We demonstrate strong off-the-shelf performance in both dense and global understanding, for image-only and image-text tasks.
+    </p>
+
+    <h3>Dense Understanding</h3>
+
+    <p>TIPS shows strong results in dense understanding tasks, including Semantic Segmentation, Depth Estimation, and Normal Estimation. See below for quantitative results and a visualization of representative outputs for each task.</p>
+
+    <img src="./tips_image_evals.png" alt="Dense Understanding Results" class="summary-img">
+    <center> <h4>Qualitative results for dense understanding tasks.</h4></center><br>
+
+    <img src="./dense_results.png" alt="Dense Understanding Results" class="summary-img">
+    <center> <h4>Qualitative results for dense understanding tasks.</h4></center><br>
+
+
+    <h3>Global Understanding</h3>
+    <img src="./tips_image_text_evals.png" alt="Dense Understanding Results" class="summary-img">
+    <center> <h4>Qualitative results for dense understanding tasks.</h4></center><br>
+</div>
+
+<div class="content">
+  <h2 style="text-align:center;">BibTex</h2> 
+    If you find this dataset useful, please consider citing our work:<br>
+    <code>
+@InProceedings{tips_paper,
+    Title       = {{TIPS: Text-Image Pretraining with Spatial Awareness}},
+    Author      = {Maninis, Kevis-Kokitsi and Chen, Kaifeng and Ghosh, Soham and Karpur, Arjun and Chen, Koert and Xia, Ye and Cao, Bingyi and Salz, Daniel and Han, Guangxing and Dlabal, Jan and Gnanapragasam, Dan and Seyedhosseini, Mojtaba and Zhou, Howard and Araujo, André},
+    Booktitle   = {ICLR},
+    year        = {2025}
+}
+    </code>
+</div>
+
+</body>
+</html>
